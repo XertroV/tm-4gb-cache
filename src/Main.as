@@ -5,7 +5,7 @@ void Main() {
     if (CheckOnLoadOkay()) {
         UpdateCacheLimitFromSettings();
     } else {
-        NotifyWarning("Checking initial cache size: it is not as expected, so cache size will not automatically be set.\n\nIf the game has recently updated, it is likely this plugin needs to be updated, too.");
+        NotifyWarning("Checking initial cache limit: it is not as expected, so cache limit will not automatically be set.\n\nIf the game has recently updated, it is likely this plugin needs to be updated, too.");
     }
 }
 
