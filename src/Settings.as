@@ -15,8 +15,8 @@ void Render_Settings_Cache() {
     UI::Separator();
     if (_CacheRefreshTime + 10000 > Time::Now) {
         UI::AlignTextToFramePadding();
-        UI::Text("Current Cache Size: " + (_CacheSize >> 20) + " MB");
-    } else if (UI::Button("Measure Cache Size")) {
+        UI::Text("Current Cache Usage: " + (_CacheSize >> 20) + " MB");
+    } else if (UI::Button("Measure Cache Usage")) {
         _CacheRefreshTime = Time::Now;
         startnew(RefreshCacheSize);
     }
@@ -24,6 +24,11 @@ void Render_Settings_Cache() {
 
 void UpdateCacheLimitFromSettings() {
     SetCacheLimitBytes(S_CacheSizeMB << 20);
+}
+
+bool CheckOnLoadOkay() {
+    auto currLimitMb = GetCacheLimitBytes() >> 20;
+    return currLimitMb == 1000 || currLimitMb == S_CacheSizeMB;
 }
 
 uint _CacheRefreshTime = 0;

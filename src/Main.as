@@ -2,7 +2,11 @@ const string PLUGIN_NAME = Meta::ExecutingPlugin().Name;
 const string PLUGIN_ICON = "";
 
 void Main() {
-    UpdateCacheLimitFromSettings();
+    if (CheckOnLoadOkay()) {
+        UpdateCacheLimitFromSettings();
+    } else {
+        NotifyWarning("Checking initial cache size: it is not as expected, so cache size will not automatically be set.\n\nIf the game has recently updated, it is likely this plugin needs to be updated, too.");
+    }
 }
 
 void NotifyError(const string &in msg) {
